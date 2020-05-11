@@ -15,8 +15,13 @@ class AutoPlayController < ApplicationController
   def create 
     @cid = Cid.new
     id = params[:cid][:channel_id]
+
   if id.include?("https://www.youtube.com/channel/")
     id = id.last(24)
+    @cid.channel_id = id
+    @cid.save
+
+elsif id.start_with?("UC")
     @cid.channel_id = id
     @cid.save
   end

@@ -61,18 +61,31 @@ $(function () {
 
 
 
-
+var list = []
 var tmp = $('.live:last').data('id');
 $(function () {
     function buildMESSAGE(message) {
-            
+        var search=$.inArray(message.vid, list);
+        if(search!=-1){
+
+        }
+
+        else if ($("span#" + message.vid) ==message.vid && search!=-1) {
+            $("iframe." + message.vid).remove();
+            $("span#" + message.vid).remove();
+        }
+
+else{
+        list.push(message.vid)
+            console.log(list);
             var did= message.id;
             var messages = $('#liveitem').append('<span id="'+message.vid +'"><img src="'+ message.pic +'" class="live"  data-id="' + did + '"id="' + message.vid + '"onclick="createEMBED(this.id,' +did+ ', this.src)"></span>');
 }
+    }
 
 
     $(function () {
-        setInterval(update, 5000);
+        setInterval(update, 1000);
         //10000ミリ秒ごとにupdateという関数を実行する
     });
     function update() { //この関数では以下のことを行う
@@ -100,7 +113,7 @@ $(function () {
 
 function removeEMBED(id, data_id, src){
     var did = data_id;
-    $("iframe#"+id).remove();
+    $("iframe."+id).remove();
     $("span#"+id).html('<img src="' + src + '" class="live" data-id="' + did + '" id="' + id + '"onclick="createEMBED(this.id,'+did+', this.src)">');
 
 }
@@ -109,7 +122,7 @@ function removeEMBED(id, data_id, src){
 function createEMBED(id, data_id, src) {
     var did=data_id;
     $("span#"+id).html('<img src="' + src + '" class="live" data-id="' + did + '" id="' + id + '"onclick="removeEMBED(this.id,'+did+ ', this.src)">');
-    $("#playing").append('<iframe class="playing" id ="'+id+'" data-vid="'+ id +'" width="534" height="334" src="https://www.youtube.com/embed/' + id +'"frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe>');
+    $("#playing").append('<iframe class="'+id+'" id ="'+id+'" data-vid="'+ did +'" width="534" height="334" src="https://www.youtube.com/embed/' + id +'"frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe>');
 
 }
 

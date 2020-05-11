@@ -1,17 +1,14 @@
-require_relative '../config/boot'
-require_relative '../config/environment'
-require 'clockwork'
-require 'google/apis'
-require 'google/apis/youtube_v3'
-require 'googleauth'
-require 'googleauth/stores/file_token_store'
-require 'active_support/all'
-require 'json'
+class YoutubeChannel < ApplicationCable::Channel
+  def subscribed
 
-include Clockwork
+  end
 
-every(30.minutes, 'kokoro') do
-  Liveinfo.destroy_all
+  def unsubscribed
+    # Any cleanup needed when channel is unsubscribed
+  end
+
+  def live
+     Liveinfo.destroy_all
         @GOOGLE_API_KEY="AIzaSyBgZhMD-48KuuxFQBApn_W70vjd6k-U_gY"
         @service = Google::Apis::YoutubeV3::YouTubeService.new
         @service.key = @GOOGLE_API_KEY
@@ -50,4 +47,5 @@ every(30.minutes, 'kokoro') do
             info.save
             end
           end
-        end
+  end
+end
