@@ -51,3 +51,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'jquery-rails'
 gem 'google-api-client', '0.9.20', require: 'google/apis/youtube_v3'
 gem 'dotenv-rails'
+gem 'bootstrap', '~> 4.1.1'
