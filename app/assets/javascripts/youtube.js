@@ -1,33 +1,8 @@
 var amamiya;
 
-$(function () {
-$('#btn2').on('click', function () {
-    $("#playing").append('<iframe class="amamiya" width="534" height="334" src="https://www.youtube.com/embed/EuFx4dtMSXY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>')
-        $("header").append('<input type="button" id="btn4" value="削除" onclick="ama()">')
-    })
-}); 
-
-$(function () {
-$('#test').on('click', function () {
-    if(amamiya){
-        $("iframe").remove();
-        amamiya=false;
-    }
-    else{
-    $("#playing").append('<iframe class="item" width="534" height="334" src="https://www.youtube.com/embed/EuFx4dtMSXY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>')
-    amamiya = true;
-        }
-    })
-});
 
 
 
-function ama(){
-    $("iframe").remove();
-    $("#btn4").remove();
-    $("#btn2").prop("disabled", false);
-    console.log("1");
-}
 
 $(function get_size(){
     var b=$(".item");
@@ -86,11 +61,10 @@ else{
 
     $(function () {
         setInterval(update, 1000);
-        //10000ミリ秒ごとにupdateという関数を実行する
     });
-    function update() { //この関数では以下のことを行う
-        if ($('.live')[0]) { //もし'live'というクラスがあったら
-            var message_id = $('.live:last').data('id'); //一番最後にある'live'というクラスの'id'というデータ属性を取得し、'message_id'という変数に代入
+    function update() { 
+        if ($('.live')[0]) { 
+            var message_id = $('.live:last').data('id'); 
 
         } else { //ない場合は
             var message_id = 0 //0を代入
@@ -103,9 +77,9 @@ else{
             },
             dataType: 'json' //データはjson形式
         })
-            .always(function (data) { //通信したら、成功しようがしまいが受け取ったデータ（@new_message)を引数にとって以下のことを行う
-                $.each(data, function (i, data) { //'data'を'data'に代入してeachで回す
-                    buildMESSAGE(data); //buildMESSAGEを呼び出す
+        .always(function (data) { 
+                $.each(data, function (i, data) { 
+                    buildMESSAGE(data); 
                 });
             });
     }
@@ -115,7 +89,7 @@ function removeEMBED(id, data_id, src){
     var did = data_id;
     $("iframe."+id).remove();
     $("span#"+id).html('<img src="' + src + '" class="live" data-id="' + did + '" id="' + id + '"onclick="createEMBED(this.id,'+did+', this.src)">');
-
+    $(".live" + "#" + id).css('outline', " ");
 }
 
 
@@ -123,7 +97,7 @@ function createEMBED(id, data_id, src) {
     var did=data_id;
     $("span#"+id).html('<img src="' + src + '" class="live" data-id="' + did + '" id="' + id + '"onclick="removeEMBED(this.id,'+did+ ', this.src)">');
     $("#playing").append('<iframe class="'+id+'" id ="'+id+'" data-vid="'+ did +'" width="534" height="334" src="https://www.youtube.com/embed/' + id +'"frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe>');
-
+    $("#" + id + ">" + ".live" ).css('outline', 'thick double #32a1ce');
 }
 
 $(document).ready(function () {

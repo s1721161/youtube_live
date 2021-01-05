@@ -24,12 +24,8 @@ ActiveRecord::Schema.define(version: 20200425020512) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "pic"
+    t.string "video_id"
     t.string "vid"
-  end
-
-  create_table "youtubes", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
 end

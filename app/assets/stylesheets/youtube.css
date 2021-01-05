@@ -70,3 +70,8 @@ display:none;
 .modal-close {
   cursor: pointer;
 }
+
+.live{
+  padding: 5px;
+  margin: 5px;
+}
