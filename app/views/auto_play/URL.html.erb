@@ -1,0 +1,46 @@
+
+<div class="wrapper">
+
+<main>
+ 
+  <div class="playlist" id="livelist">
+    <div id="liveitem">
+    
+    </div>
+  </div>
+<div class="container">
+  <div id="playing">
+
+
+  </div>
+</div>
+</main>
+
+  <div class="menu-trigger" href="">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  <nav>
+    <ul>
+      <li><a href="index">登録済みチャンネル一覧</a></li>
+      <li>AAAA</li>
+      <li>AAAA</li>
+    </ul>
+  </nav>
+  <div class="overlay"></div>
+  </div>
+
+</html>
+<a class="modal-open">チャンネル追加</a>
+<div class="modal">
+  <div class="modal-cont">
+  <%= form_for Cid.new do |f| =%>
+    <%= f.label :"チャンネルurl" %>
+    <%= f.text_field :channel_id %>
+    <%= f.submit %>
+  <% end %>
+  </div>
+  <div class="btn-modal-close"><a class="modal-close">閉じる</a></div>
+</div>
+<p>テスト</p>

@@ -1,0 +1,14 @@
+current directory: C:/Users/cocoa/Desktop/Rails/YoutubeAuto/vendor/bundle/ruby/2.3.0/gems/nio4r-2.5.2/ext/nio4r
+C:/Ruby/Ruby23/bin/ruby.exe -I C:/Ruby/Ruby23/lib/ruby/site_ruby/2.3.0 -r ./siteconf20200422-22988-q88h7b.rb extconf.rb
+
+current directory: C:/Users/cocoa/Desktop/Rails/YoutubeAuto/vendor/bundle/ruby/2.3.0/gems/nio4r-2.5.2/ext/nio4r
+make "DESTDIR=" clean
+make: *** No rule to make target `clean'.  Stop.
+
+current directory: C:/Users/cocoa/Desktop/Rails/YoutubeAuto/vendor/bundle/ruby/2.3.0/gems/nio4r-2.5.2/ext/nio4r
+make "DESTDIR="
+make: Nothing to be done for `all'.
+
+current directory: C:/Users/cocoa/Desktop/Rails/YoutubeAuto/vendor/bundle/ruby/2.3.0/gems/nio4r-2.5.2/ext/nio4r
+make "DESTDIR=" install
+make: Nothing to be done for `install'.

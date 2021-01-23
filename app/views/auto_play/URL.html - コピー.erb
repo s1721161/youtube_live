@@ -1,0 +1,54 @@
+
+<a class="modal-open"><img src="/assets/logo.png"></a>
+<div class="modal">
+  <div class="modal-cont">
+    <%= form_for Cid.new do |f| =%>
+    <%= f.label :"チャンネルurl" %>
+    <%= f.text_field :channel_id %>
+    <%= f.submit %>
+<% end %>
+
+  </div>
+  <div class="btn-modal-close"><a class="modal-close">閉じる</a></div>
+</div>
+
+
+<header class="playlist" id="livelist">
+<div id="liveitem">
+
+<%@livelist=Liveinfo.all%>
+<% temp="" %>
+<%@livelist.each do|live| %>
+<% i=0 %>
+<%if i>=0 && temp==live.url%>
+
+<%else%>
+<span id=<%= live.vid%>>  <img src=<%= live.pic%> data-id=<%= live.id%> class="live" id=<%= live.vid%> onclick="createEMBED(this.id, <%=live.id%>, this.src)">  </span>
+  <% temp=live.url%>
+<%i+=1%>
+
+  <%end%>
+<%end%>
+
+</div>
+</header>
+
+<div class="Menu">
+
+  <dl id="acMenu">
+    <dt>メニュー1</dt>
+      <dd>
+        <input type="button" id="btn2" value="追加">
+      </dd>
+  </dl>
+</div>
+
+<div class="container">
+  <div id="playing">
+
+
+  </div>
+</div>
+
+</html>
+<p>テスト</p>

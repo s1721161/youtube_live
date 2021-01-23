@@ -1,0 +1,2 @@
+class Liveinfo < ApplicationRecord
+end
