@@ -1,6 +1,4 @@
 var active=0;
-let title= [];
-
 
 $(function () {
     $('.menu-trigger').on('click',function(){
@@ -28,18 +26,15 @@ $(function get_size(){
 });
 
 $(function () {
-    //オーバーレイとコンテンツの表示
     $(".modal-open").click(function () {
-        $(this).blur(); //ボタンからフォーカスを外す
-        if ($(".modal-overlay")[0]) return false; //新たにオーバーレイが追加されるのを防ぐ
-        $("body").append('<div class="modal-overlay"></div>'); //オーバーレイ用のHTMLをbody内に追加
-        $(".modal-overlay").fadeIn("slow"); //オーバーレイの表示
-        $(".modal").fadeIn("slow"); //モーダルウインドウの表示
-
-        //モーダルウインドウの終了
+        $(this).blur(); 
+        if ($(".modal-overlay")[0]) return false;
+        $("body").append('<div class="modal-overlay"></div>'); 
+        $(".modal-overlay").fadeIn("slow");
+        $(".modal").fadeIn("slow");
         $(".modal-overlay,.modal-close").unbind().click(function () {
-            $(".modal,.modal-overlay").fadeOut("slow", function () { //閉じるボタンかオーバーレイ部分クリックでフェードアウト
-                $('.modal-overlay').remove(); //フェードアウト後、オーバーレイをHTMLから削除
+            $(".modal,.modal-overlay").fadeOut("slow", function () {
+                $('.modal-overlay').remove(); 
             });
         });
     });
@@ -47,10 +42,6 @@ $(function () {
 
 
 
-
-
-
-var list = []
 var tmp = $('.live:last').data('id');
 $(function () {
     function buildMESSAGE(message) {
@@ -64,7 +55,7 @@ $(function () {
         }
 
         else{
-        list.push(message.vid)
+            list.push(message.vid)
             console.log(list);
             var did= message.id;
             var title=message.title;
@@ -81,16 +72,16 @@ function update() {
         var message_id = $('.live:last').data('id'); 
 
     } 
-    else { //ない場合は
-        var message_id = 0 //0を代入
+    else {
+        var message_id = 0
     }
-    $.ajax({ //ajax通信で以下のことを行う
-        url: location.href, //urlは現在のページを指定
-        type: 'GET', //メソッドを指定
-        data: { //railsに引き渡すデータは
-            message: { id: message_id } //このような形(paramsの形をしています)で、'id'には'message_id'を入れる
+    $.ajax({
+        url: location.href,
+        type: 'GET',
+        data: {
+            message: { id: message_id } 
         },
-        dataType: 'json' //データはjson形式
+        dataType: 'json'
     })
     .always(function (data) { 
         $.each(data, function (i, data) { 
@@ -106,8 +97,6 @@ function ahoo(id){
     },function(){
         $(this).next("p").hide();
     });
-    
-
     //$("img#"+id).mouseenter(function(){ 
         //var a =$(this).attr("data-title")
     //})
@@ -192,7 +181,7 @@ function createEMBED(id, data_id, src) {
     }
     active++;
     $("span#"+id).html('<img src="' + src + '" class="live" title="a" data-title="'+ a.title +'" data-id="' + did + '" id="' + id + '"onclick="removeEMBED(this.id,'+did+ ', this.src)"></span><p class="info">'+ a.title +' </p>');
-    $("#playing").append('<iframe class="'+id+'" id ="'+id+'" data-vid="'+ did +'" width="534" height="334" src="https://www.youtube.com/embed/' + id +'?autoplay=1 frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe>');
+    $("#playing").append('<iframe class="'+id+'" id ="'+id+'" data-vid="'+ did +'" width="534" height="334" src="https://www.youtube.com/embed/' + id +'?autoplay=1" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe>');
     $("#" + id + ">" + ".live" ).css('outline', 'thick double #32a1ce');
     ahoo(id);
     resize_iframe();
