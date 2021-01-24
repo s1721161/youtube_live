@@ -1,4 +1,6 @@
 var active=0;
+let title= [];
+
 
 $(function () {
     $('.menu-trigger').on('click',function(){
@@ -45,6 +47,9 @@ $(function () {
 
 
 
+
+
+
 var list = []
 var tmp = $('.live:last').data('id');
 $(function () {
@@ -53,46 +58,61 @@ $(function () {
         if(search!=-1){
 
         }
-
         else if ($("span#" + message.vid) ==message.vid && search!=-1) {
             $("iframe." + message.vid).remove();
             $("span#" + message.vid).remove();
         }
 
-else{
+        else{
         list.push(message.vid)
             console.log(list);
             var did= message.id;
-            var messages = $('#liveitem').append('<span id="'+message.vid +'"><img src="'+ message.pic +'" class="live"  data-id="' + did + '"id="' + message.vid + '"onclick="createEMBED(this.id,' +did+ ', this.src)"></span>');
-}
-    }
-
-
-    $(function () {
-        setInterval(update, 1000);
-    });
-    function update() { 
-        if ($('.live')[0]) { 
-            var message_id = $('.live:last').data('id'); 
-
-        } else { //ない場合は
-            var message_id = 0 //0を代入
+            var title=message.title;
+            var messages = $('#liveitem').append('<span id="'+message.vid +'" data-title="'+title+'"><img src="'+ message.pic +'" class="live" data-id="' + did + '"id="' + message.vid + '"onclick="createEMBED(this.id,' +did+ ', this.src)"></span><p class="info">'+ title +' </p>');
         }
-        $.ajax({ //ajax通信で以下のことを行う
-            url: location.href, //urlは現在のページを指定
-            type: 'GET', //メソッドを指定
-            data: { //railsに引き渡すデータは
-                message: { id: message_id } //このような形(paramsの形をしています)で、'id'には'message_id'を入れる
-            },
-            dataType: 'json' //データはjson形式
-        })
-        .always(function (data) { 
-                $.each(data, function (i, data) { 
-                    buildMESSAGE(data); 
-                });
-            });
     }
+
+$(function () {
+    setInterval(update, 1000);
 });
+
+function update() { 
+    if ($('.live')[0]) { 
+        var message_id = $('.live:last').data('id'); 
+
+    } 
+    else { //ない場合は
+        var message_id = 0 //0を代入
+    }
+    $.ajax({ //ajax通信で以下のことを行う
+        url: location.href, //urlは現在のページを指定
+        type: 'GET', //メソッドを指定
+        data: { //railsに引き渡すデータは
+            message: { id: message_id } //このような形(paramsの形をしています)で、'id'には'message_id'を入れる
+        },
+        dataType: 'json' //データはjson形式
+    })
+    .always(function (data) { 
+        $.each(data, function (i, data) { 
+                buildMESSAGE(data); 
+        });
+    });
+}
+});
+
+function ahoo(id){
+    $("img#"+id).hover(function(){
+        $(this).next("p").show();
+    },function(){
+        $(this).next("p").hide();
+    });
+    
+
+    //$("img#"+id).mouseenter(function(){ 
+        //var a =$(this).attr("data-title")
+    //})
+};
+
 
 function resize_iframe(){
     $("iframe").on("load", function(){
@@ -151,26 +171,30 @@ function resize_iframe(){
 
 function removeEMBED(id, data_id, src){
     var did = data_id;
+    var a = $("span#"+id).data();
     if(active==1){
         $("#playeing").removeClass("nowplaying");
     }
     active--;
     $("iframe."+id).remove();
-    $("span#"+id).html('<img src="' + src + '" class="live" data-id="' + did + '" id="' + id + '"onclick="createEMBED(this.id,'+did+', this.src)">');
+    $("span#"+id).html('<img src="' + src + '" class="live" title="a" data-title="'+ a.title +'" data-id="' + did + '" id="' + id + '"onclick="createEMBED(this.id,'+did+', this.src)"></span><p class="info">'+ a.title +' </p>');
     $(".live" + "#" + id).css('outline', " ");
+    ahoo(id);
     resize_iframe();
 }
 
 
 function createEMBED(id, data_id, src) {
+    var a = $("span#"+id).data();
     var did=data_id;
     if(active==0){
         $("#playing").addClass("nowplaying");
     }
     active++;
-    $("span#"+id).html('<img src="' + src + '" class="live" data-id="' + did + '" id="' + id + '"onclick="removeEMBED(this.id,'+did+ ', this.src)">');
+    $("span#"+id).html('<img src="' + src + '" class="live" title="a" data-title="'+ a.title +'" data-id="' + did + '" id="' + id + '"onclick="removeEMBED(this.id,'+did+ ', this.src)"></span><p class="info">'+ a.title +' </p>');
     $("#playing").append('<iframe class="'+id+'" id ="'+id+'" data-vid="'+ did +'" width="534" height="334" src="https://www.youtube.com/embed/' + id +'?autoplay=1 frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe>');
     $("#" + id + ">" + ".live" ).css('outline', 'thick double #32a1ce');
+    ahoo(id);
     resize_iframe();
 }
 

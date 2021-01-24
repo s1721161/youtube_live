@@ -9,7 +9,7 @@ class YoutubeChannel < ApplicationCable::Channel
 
   def live
     Liveinfo.destroy_all
-    @GOOGLE_API_KEY= "AIzaSyCMlr25gf_T1bk_YumQ12FUaNyhPfcMEyA"
+    @GOOGLE_API_KEY= "AIzaSyDD0cbNRrEVAabXcO2wexGNuZIMIEJdk0o"
     @service = Google::Apis::YoutubeV3::YouTubeService.new
     @service.key = @GOOGLE_API_KEY
     next_page_token = nil

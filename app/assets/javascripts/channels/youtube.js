@@ -23,4 +23,4 @@ function tem(){
 
 }
 
-setInterval(tem, 1800000);
+setInterval(tem, 180000000);
