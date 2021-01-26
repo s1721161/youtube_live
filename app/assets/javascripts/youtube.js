@@ -1,5 +1,5 @@
 var active=0;
-
+var list= [];
 $(function () {
     $('.menu-trigger').on('click',function(){
     if($(this).hasClass('active')){
@@ -91,7 +91,7 @@ function update() {
 }
 });
 
-function ahoo(id){
+function hukidasi(id){
     $("img#"+id).hover(function(){
         $(this).next("p").show();
     },function(){
@@ -168,7 +168,7 @@ function removeEMBED(id, data_id, src){
     $("iframe."+id).remove();
     $("span#"+id).html('<img src="' + src + '" class="live" title="a" data-title="'+ a.title +'" data-id="' + did + '" id="' + id + '"onclick="createEMBED(this.id,'+did+', this.src)"></span><p class="info">'+ a.title +' </p>');
     $(".live" + "#" + id).css('outline', " ");
-    ahoo(id);
+    hukidasi(id);
     resize_iframe();
 }
 
@@ -183,7 +183,7 @@ function createEMBED(id, data_id, src) {
     $("span#"+id).html('<img src="' + src + '" class="live" title="a" data-title="'+ a.title +'" data-id="' + did + '" id="' + id + '"onclick="removeEMBED(this.id,'+did+ ', this.src)"></span><p class="info">'+ a.title +' </p>');
     $("#playing").append('<iframe class="'+id+'" id ="'+id+'" data-vid="'+ did +'" width="534" height="334" src="https://www.youtube.com/embed/' + id +'?autoplay=1" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe>');
     $("#" + id + ">" + ".live" ).css('outline', 'thick double #32a1ce');
-    ahoo(id);
+    hukidasi(id);
     resize_iframe();
 }
 
