@@ -53,7 +53,7 @@ GEM
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
     childprocess (3.0.0)
-    concurrent-ruby (1.1.8)
+    concurrent-ruby (1.1.10)
     crass (1.0.6)
     dotenv (2.7.6)
     dotenv-rails (2.7.6)
@@ -66,9 +66,10 @@ GEM
       multipart-post (>= 1.2, < 3)
       ruby2_keywords
     faraday-net_http (1.0.1)
+    ffi (1.14.2)
     ffi (1.14.2-x86-mingw32)
-    globalid (0.4.2)
-      activesupport (>= 4.2.0)
+    globalid (1.0.1)
+      activesupport (>= 5.0)
     google-api-client (0.9.20)
       addressable (~> 2.3)
       googleauth (~> 0.5)
@@ -87,7 +88,7 @@ GEM
       signet (~> 0.14)
     httpclient (2.8.3)
     hurley (0.2)
-    i18n (1.8.7)
+    i18n (1.12.0)
       concurrent-ruby (~> 1.0)
     jbuilder (2.11.1)
       activesupport (>= 5.0.0)
@@ -107,11 +108,13 @@ GEM
       mime-types-data (~> 3.2015)
     mime-types-data (3.2020.1104)
     mini_mime (1.0.2)
-    minitest (5.14.3)
+    minitest (5.17.0)
     multi_json (1.15.0)
     multipart-post (2.1.1)
     nio4r (2.5.4)
     nokogiri (1.11.1-x86-mingw32)
+      racc (~> 1.4)
+    nokogiri (1.11.1-x86_64-linux)
       racc (~> 1.4)
     os (1.1.1)
     public_suffix (4.0.6)
@@ -186,7 +189,7 @@ GEM
     turbolinks (5.2.1)
       turbolinks-source (~> 5.2)
     turbolinks-source (5.2.0)
-    tzinfo (1.2.9)
+    tzinfo (1.2.10)
       thread_safe (~> 0.1)
     tzinfo-data (1.2021.1)
       tzinfo (>= 1.0.0)
@@ -206,6 +209,7 @@ GEM
 
 PLATFORMS
   x86-mingw32
+  x86_64-linux
 
 DEPENDENCIES
   byebug
